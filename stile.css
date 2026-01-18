@@ -1,0 +1,179 @@
+:root{
+    --background-principale: #F5FBE6;
+    --background-secondario: #d9e0c6; 
+    --testo-principale: #233D4D;
+    --elementi-secondari: #215E61;
+    --colore-di-accento: #FE7F2D;
+}
+
+
+*{
+    
+    text-align: center;
+    background-color: var(--background-principale);
+    color: var(--testo-principale);
+}
+
+
+p{
+    
+    padding-right: 8%;
+    padding-left: 8%;
+    text-wrap-mode:wrap;
+
+}
+
+a{
+    color: var(--colore-di-accento);
+}
+
+#context h3{
+    color: var(--elementi-secondari);
+}
+
+/*PARTE DI CSS DI CLAUDE*/
+
+#gallery {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.project {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: var(--background-secondario);
+  border-radius: 8px;
+  border-left: 4px solid var(--elementi-secondari) ; /*#007bff;*/
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.project img {
+  background: var(--background-secondario);
+  width: 120px;
+  height: 120px;
+  object-fit:contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.project-content {
+    background: var(--background-secondario);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-content h3 {
+    background: var(--background-secondario);
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.project-content p {
+    background: var(--background-secondario);
+  margin: 0 0 1rem 0;
+  color: #666;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.project-link {
+    background: var(--background-secondario);
+  color: var(--colore-di-accento);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.tags {
+    background: var(--background-secondario);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.8rem 0;
+}
+
+.tag {
+  background: var(--background-secondario);
+  color: var(--elementi-secondari);
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Responsive per mobile */
+@media (max-width: 600px) {
+  .project {
+    background: var(--background-secondario);
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .project img {
+    background: var(--background-secondario);
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--background-principale);
+  border-radius: 8px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--elementi-secondari);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.cta-button:hover {
+  background: #5568d3;
+}
+
+
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--background-secondario);
+  margin-top: 3rem;
+  border-radius: 20px;
+}
+
+footer p{
+    font-size: 2rem;
+    background: var(--background-secondario);
+}
+
+.github-link {
+  color: #333;
+  background: var(--background-secondario);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: #667eea;
+}

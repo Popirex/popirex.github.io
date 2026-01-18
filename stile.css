@@ -31,8 +31,6 @@ a{
     color: var(--elementi-secondari);
 }
 
-/*PARTE DI CSS DI CLAUDE*/
-
 #gallery {
   max-width: 900px;
   margin: 2rem auto;
@@ -114,7 +112,6 @@ a{
   font-weight: 500;
 }
 
-/* Responsive per mobile */
 @media (max-width: 600px) {
   .project {
     background: var(--background-secondario);
@@ -163,6 +160,7 @@ footer {
 }
 
 footer p{
+  color: var(--colore-di-accento);
     font-size: 2rem;
     background: var(--background-secondario);
 }

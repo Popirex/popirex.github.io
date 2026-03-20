@@ -6,7 +6,22 @@ let raggio = 270
 let valore = 0;
 let charSize = 30;
 let premuto = false;
+let scaleFactor = 1;
 let angolo;
+
+// canvas funtions
+
+function windowResized(){
+    scaleCanvas();
+}
+
+function scaleCanvas(){
+    scaleFactor = min(windowWidth / WIDTH, windowHeight / HEIGHT);
+    let canvas = document.querySelector("canvas");
+    canvas.style.width = WIDTH * scaleFactor + "px";
+    canvas.style.height = HEIGHT * scaleFactor + "px";
+}
+
 
 // eventListeners from html file
 
@@ -71,6 +86,8 @@ function drawAngleText(){
 function setup(){
     let canvas = createCanvas(WIDTH, HEIGHT);
     canvas.parent("canvas-container");
+    canvas.style("display", "block");
+    scaleCanvas();
     frameRate(60);
     strokeWeight(3);
     angolo = randomAngle();

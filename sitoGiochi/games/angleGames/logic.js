@@ -18,7 +18,6 @@ function windowResized(){
 function scaleCanvas(){
     scaleFactor = min(windowWidth / WIDTH, windowHeight / HEIGHT);
     let canvas = document.querySelector("canvas");
-    console.log(scaleFactor);
     if(scaleFactor > 1){
         scaleFactor = 1;
     }

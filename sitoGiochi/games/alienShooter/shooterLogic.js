@@ -4,7 +4,9 @@ let numStelle = 200;
 let raggioMaxStelle = 5;
 let playerImage;
 let enemyImage;
+let heartImage;
 let punteggio = 0;
+let round = 0;
 
 
 let WIDTH = 600;
@@ -16,6 +18,7 @@ let player;
 let bullets = [];
 let enemies = [];
 let enemyNum = 7;
+let vite = 3;
 let playerX = (WIDTH / 2);
 let playerY = (HEIGHT - 50);
 
@@ -25,13 +28,39 @@ let playerY = (HEIGHT - 50);
 function drawScore(){
     let frase = "Score: " + punteggio;
     stroke(255);
-    text(frase, WIDTH - 70, 30 );
+    text(frase, 30, 30 );
+}
+
+function drawLives(){
+    for(let i = 0; i < vite; i++){
+        image(heartImage, (WIDTH - 70) + (20 * i), 30, 20, 15);
+    }
+}
+
+function drawFinish(){
+    push();
+    let dimensioneTesto = 100;
+    translate(WIDTH/2, HEIGHT/2);
+    stroke(255, 0, 0);
+    fill(255, 0 , 0);
+    textSize(dimensioneTesto);
+    text("You Lost", - dimensioneTesto * 2, 0);
+
+    let finalScore = "Final Score: " + punteggio;
+    
+    fill(255);
+    stroke(255);
+    dimensioneTesto = 40;
+    textSize(dimensioneTesto);
+    text(finalScore, - dimensioneTesto * 3, 60);
+    pop();
 }
 
 
 function preload(){
     playerImage = loadImage("images/player.png");
     enemyImage = loadImage("images/enemy.png");
+    heartImage = loadImage("images/heart.png");
 }
 
 function initPlayer(){
@@ -39,8 +68,9 @@ function initPlayer(){
 }
 
 function fillEnemies(){
-        for(let i = 0; i < enemyNum ; i++){
-            enemies.push(new Enemy( (( i  ) * 80) + 50, 70, enemyImage));
+    round++;
+        for(let i = 0; i < enemyNum * round ; i++){
+            enemies.push(new Enemy(enemyImage));
         }
 }
 
@@ -53,6 +83,13 @@ function initStars(){
 
 function checkEnemies(){
 for(let i = enemies.length - 1; i >= 0; i--){
+
+    if(enemies[i].y > HEIGHT){
+        vite--;
+        enemies.splice(i, 1);
+        continue;
+    }
+
         enemies[i].drawEnemy();
 
         for(let j = bullets.length - 1; j >= 0; j--){
@@ -121,23 +158,30 @@ function draw(){
 
     // disegno i proiettili
 
-    for( let i = bullets.length - 1; i >= 0; i--){
-        bullets[i].updateBullet();
-        bullets[i].drawBullet();
+    if(vite > 0){
 
-        if(bullets[i].isOffScreen()){
-            bullets.splice(i, 1);
+        for( let i = bullets.length - 1; i >= 0; i--){
+            bullets[i].updateBullet();
+            bullets[i].drawBullet();
+
+            if(bullets[i].isOffScreen()){
+                bullets.splice(i, 1);
+            }
         }
+
+        checkEnemies();
+
+        if(enemies.length <= 0){
+            fillEnemies();
+        }
+
+        player.drawPlayer();
+        
+        drawLives();
+        drawScore();
     }
-
-    checkEnemies();
-
-    if(enemies.length <= 0){
-        fillEnemies();
+    else{
+        drawFinish();
     }
-
-    player.drawPlayer();
-
-    drawScore();
 
 }

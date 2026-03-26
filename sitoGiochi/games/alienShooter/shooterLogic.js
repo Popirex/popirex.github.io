@@ -54,22 +54,39 @@ function drawLives(){
     }
 }
 
-function drawFinish(){
-    push();
+// function drawLost()
+
+function drawLostMSG(){
     let dimensioneTesto = 100;
     translate(WIDTH/2, HEIGHT/2);
     stroke(255, 0, 0);
     fill(255, 0 , 0);
     textSize(dimensioneTesto);
     text("You Lost", - dimensioneTesto * 2, 0);
+}
 
+// function finalScore()
+
+function finalScore(){
     let finalScore = "Final Score: " + punteggio;
+    let dimensioneTesto = 40
     
     fill(255);
     stroke(255);
-    dimensioneTesto = 40;
     textSize(dimensioneTesto);
     text(finalScore, - dimensioneTesto * 3, 60);
+}
+
+
+
+function drawFinish(){
+
+    push();
+    
+    drawLostMSG();
+
+    finalScore();
+    
     pop();
 }
 

@@ -3,7 +3,7 @@ class Enemy{
     constructor(enemyImage){
         this.x = random(0, WIDTH);
         this.y = random(0, 20);
-        this.vy = random(1, 2);
+        this.vy = random(0.1, 1.5);
         this.width = 70;
         this.height = 30;
         this.image = enemyImage;

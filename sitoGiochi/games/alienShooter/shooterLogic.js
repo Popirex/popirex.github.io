@@ -17,13 +17,30 @@ let minDist = 30;
 let player;
 let bullets = [];
 let enemies = [];
+let suoniSparo = [];
+let suoniMorte = [];
 let enemyNum = 7;
-let vite = 3;
+let vite = 4;
 let playerX = (WIDTH / 2);
 let playerY = (HEIGHT - 50);
 
+let sparo_popi_1 , sparo_popi_2, sparo_fil_1, sparo_fil_2, sparo_fabio_1, sparo_fabio_2;
+let morte_popi_1, morte_popi_2, morte_fil_1, morte_fil_2, morte_fabio_1, morte_fabio_2;
+
 
 //Class functions
+
+function suonoSparo(){
+
+    let suono = random(suoniSparo);
+    suono.play();
+}
+
+function suonoMorte(){
+    let suono = random(suoniMorte);
+    suono.play();
+}
+
 
 function drawScore(){
     let frase = "Score: " + punteggio;
@@ -58,9 +75,28 @@ function drawFinish(){
 
 
 function preload(){
+    // images
     playerImage = loadImage("images/player.png");
     enemyImage = loadImage("images/enemy.png");
     heartImage = loadImage("images/heart.png");
+
+    //sounds
+        //shots
+    sparo_popi_1 = loadSound("sounds/sparo_popi_1.mp3");
+    sparo_popi_2 = loadSound("sounds/sparo_popi_2.mp3");
+    sparo_fil_1 = loadSound("sounds/sparo_fil_1.mp3");
+    sparo_fil_2 = loadSound("sounds/sparo_fil_2.mp3");
+    sparo_fabio_1 = loadSound("sounds/sparo_fabio_1.mp3");
+    sparo_fabio_2 = loadSound("sounds/sparo_fabio_2.mp3");
+
+        // deaths
+    
+    morte_popi_1 = loadSound("sounds/morte_popi_1.mp3");
+    morte_popi_2 = loadSound("sounds/morte_popi_1.mp3");
+    morte_fil_1 = loadSound("sounds/morte_fil_1.mp3");
+    morte_fil_2 = loadSound("sounds/morte_fil_2.mp3");
+    morte_fabio_1 = loadSound("sounds/morte_fabio_1.mp3");
+    morte_fabio_2 = loadSound("sounds/morte_fabio_2.mp3");
 }
 
 function initPlayer(){
@@ -95,6 +131,7 @@ for(let i = enemies.length - 1; i >= 0; i--){
         for(let j = bullets.length - 1; j >= 0; j--){
             let distanza = dist(enemies[i].x, enemies[i].y, bullets[j].x , bullets[j].y );
             if(distanza <= minDist){
+                suonoMorte();
                 punteggio++;
                 enemies.splice(i, 1);
                 bullets.splice(j, 1);
@@ -113,8 +150,13 @@ function backgroundStars(){
 }
 
 function mousePressed(){
-    bullets.push(new Projectile(playerX, playerY, mouseX, mouseY));
+
+    if(mouseX < WIDTH && mouseX > 0  && mouseY > 0 && mouseY < HEIGHT){
+        bullets.push(new Projectile(playerX, playerY, mouseX, mouseY));
+        suonoSparo();
+    }
 }
+
 
 
 
@@ -139,6 +181,10 @@ function scaleCanvas(){
 function setup(){
     frameRate(30);
     imageMode(CENTER);
+
+    suoniSparo = [sparo_popi_1, sparo_popi_2, sparo_fil_1, sparo_fil_2, sparo_fabio_1, sparo_fabio_2];
+    
+    suoniMorte = [morte_popi_1, morte_popi_2, morte_fil_1, morte_fil_2, morte_fabio_1, morte_fabio_2];
 
     let canvas = createCanvas(WIDTH, HEIGHT);
     canvas.parent("canvas-container");
